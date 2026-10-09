@@ -5,6 +5,8 @@
 // Assembly location: C:\Users\ninte\Desktop\Games\Switch\Fire Emblem Three Houses Randomizer.exe
 
 using System;
+using System.ComponentModel.Design.Serialization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Fire_Emblem_Three_Houses_Randomizer_V2
@@ -12,13 +14,15 @@ namespace Fire_Emblem_Three_Houses_Randomizer_V2
   internal static class Program
   {
     [STAThread]
-    private static void Main()
+    private static void Main(String[] args)
     {
-      Randomizer.rng = new RandomLog();
-      Randomizer.setKnown();
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run((Form) new RandomizerForm());
-    }
+            Settings settings = Serializer.LoadProperties("settings.json");
+            SettingsManager.handleSettingsOnLoad(settings);
+            Randomizer.rng = new RandomLog();
+            Randomizer.setKnown();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run((Form)new RandomizerForm(settings));
+        }
   }
 }

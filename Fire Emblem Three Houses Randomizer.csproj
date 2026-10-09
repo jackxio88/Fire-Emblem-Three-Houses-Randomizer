@@ -38,7 +38,11 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="ArrayComparer.cs" />
+    <Compile Include="SettingsManager.cs" />
     <Compile Include="Data1RawTextFile.cs" />
     <Compile Include="Data1TextFormatter.cs" />
     <Compile Include="Data1TextLanguageSection.cs" />
@@ -61,6 +65,7 @@
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TextFormatter.cs" />
+    <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx" />

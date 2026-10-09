@@ -1075,6 +1075,7 @@ namespace Fire_Emblem_Three_Houses_Randomizer_V2
         public double amplifyMaddeningAmount;
         public bool ensureLowLvEarly;
 
+        public string filesDirectory;
         public Settings()
         {
             this.randStatBoosts = false;
@@ -2145,6 +2146,8 @@ namespace Fire_Emblem_Three_Houses_Randomizer_V2
             amplifyMaddening = false;
             amplifyMaddeningAmount = 50.0;
             ensureLowLvEarly = false;
+
+            filesDirectory = null;
         }
     }
 }

@@ -1335,10 +1335,10 @@ namespace Fire_Emblem_Three_Houses_Randomizer_V2
         private Button loadScenario_button;
         private CheckBox checkBox293;
         private FileStream data1FileStream;
-        public RandomizerForm()
+        public RandomizerForm(Settings settings)
         {
             this.InitializeComponent();
-            settings = new Settings();
+            this.settings = settings;
             updateAllDisplay();
         }
 
@@ -4016,6 +4016,27 @@ namespace Fire_Emblem_Three_Houses_Randomizer_V2
 
         private void saveFiles()
         {
+            if (SettingsManager.checkAndSave(settings))
+            {
+                if (generateChangelog_checkBox.Checked)
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.FileName = "FE3H Randomizer Changelog.txt";
+                    saveFileDialog1.Filter = "FE3H Randomizer Changelog.txt file (*.txt)|*.txt|All files (*.*)|*.*";
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        BinaryWriter binaryWriter = new BinaryWriter((Stream)File.Open(saveFileDialog1.FileName, FileMode.Create));
+                        binaryWriter.Write(Randomizer.changelog);
+                        binaryWriter.Close();
+                    }
+                    else
+                    {
+                        int num1 = (int)MessageBox.Show("The Save File Dialog box was closed, and the changelog was not saved!", "Warning: FE3H Randomizer Changelog.txt not saved!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                return;
+            }
+
             if (Randomizer.personLoaded)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
